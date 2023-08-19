@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Location Detector</title>
+  <style>
+    /* Add some basic styling */
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    #locationInput {
+      width: 300px;
+      padding: 10px;
+    }
+  </style>
+  <!-- <script type="module" src="./script.js"></script> -->
+</head>
+
+<body>
+  <h1>Location Suggestion Example</h1>
+  <!-- <input type="" id="location" placeholder="current location"> -->
+  <input type="text" id="locationInput" placeholder="Enter a location">
+
+  <script>
+    function initAutocomplete() {
+      const input = document.getElementById('locationInput');
+      const autocomplete = new google.maps.places.Autocomplete(input);
+      console.log(autocomplete, "addd");
+    }
+    let geocoder;
+    let address;
+
+    function initMap() {
+      geocoder = new google.maps.Geocoder();
+
+      const latitude = 28.6539; // Replace with your desired latitude
+      const longitude = 77.2712; // Replace with your desired longitude
+      const location = new google.maps.LatLng(latitude, longitude);
+
+      getAddressFromLatLng(location);
+    }
+
+    function getAddressFromLatLng(location) {
+      geocoder.geocode({ location: location }, (results, status) => {
+        if (status === "OK") {
+          if (results[0]) {
+            address = results[0].formatted_address;
+            console.log("Address:", results[0].formatted_address);
+          } else {
+            console.log("No address found for this location.");
+          }
+        } else {
+          console.log("Geocoder failed due to:", status);
+        }
+      });
+    }
+
+    window.initMap = initMap;
+  </script>
+
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvWAFSzpNu0J1IAFyGvlCr0l2HHTq00y4&libraries=places&callback=initAutocomplete"></script>
+
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvWAFSzpNu0J1IAFyGvlCr0l2HHTq00y4&callback=initMap&libraries=places"
+    defer></script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Current Location</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <script src="script.js"></script>
+  <div class="main">
+    <h1>Find Location</h1>
+    <div id="locationInputContainer">
+      <input type="text" id="locationInput" placeholder="Enter a location">
+      <span id="clearButton">x</span>
+      <span id="current">0</span>
+    </div>
+    <span class="data1">0 : Set your Current Location</span>
+    <span class="data2">X : Remove the Location</span>
+  </div>
+
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvWAFSzpNu0J1IAFyGvlCr0l2HHTq00y4&libraries=places&callback=initialize"
+    defer></script>
+</body>
+
+</html>
